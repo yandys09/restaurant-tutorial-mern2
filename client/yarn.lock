@@ -1148,6 +1148,11 @@
   "resolved" "https://registry.npmjs.org/@hapi/bourne/-/bourne-1.3.2.tgz"
   "version" "1.3.2"
 
+"@hapi/hoek@^10.0.0":
+  "integrity" "sha512-CvlW7jmOhWzuqOqiJQ3rQVLMcREh0eel4IBnxDx2FAcK8g7qoJRQK4L1CPBASoCY6y8e6zuCy3f2g+HWdkzcMw=="
+  "resolved" "https://registry.npmjs.org/@hapi/hoek/-/hoek-10.0.1.tgz"
+  "version" "10.0.1"
+
 "@hapi/hoek@^8.3.0", "@hapi/hoek@8.x.x":
   "integrity" "sha512-yN7kbciD87WzLGc5539Tn0sApjyiGHAJgKvG9W8C7O+6c7qmoQMfVs0W4bX17eqz6C78QJqqFrtgdK5EWf6Qow=="
   "resolved" "https://registry.npmjs.org/@hapi/hoek/-/hoek-8.5.1.tgz"
@@ -1521,6 +1526,13 @@
     "@types/estree" "0.0.39"
     "estree-walker" "^1.0.1"
     "picomatch" "^2.2.2"
+
+"@sideway/address@^5.0.0":
+  "integrity" "sha512-IEZ3Gi972M1yubSPhcpzpVTT/Vb46F9L0W+K/GhqvWv6aAvVbNNVsYFekXWEemHHFfTVrxFcURrzsPGPPKkxKQ=="
+  "resolved" "https://registry.npmjs.org/@sideway/address/-/address-5.0.0.tgz"
+  "version" "5.0.0"
+  dependencies:
+    "@hapi/hoek" "^10.0.0"
 
 "@sinclair/typebox@^0.24.1":
   "integrity" "sha512-ka0W0KN5i6LfrSocduwliMMpqVgohtPFidKdMEOUjoOFCHcOOYkKsPRxfs5f15oPNHTm6ERAm0GV/+/LTKeiWg=="
