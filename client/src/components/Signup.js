@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { showErrorMsg, showSuccessMsg } from "../helpers/message";
 import { showLoading } from "../helpers/loading";
 
-import "./Signup.css";
+
 import { signup } from "../api/auth";
 
 const Signup = () => {
@@ -82,12 +82,16 @@ const Signup = () => {
             password: "",
             password2: "",
             loading: false,
-            successMsg: response.data.successMessage
+            successMsg: response.data.successMessage,
           });
         })
         .catch((err) => {
           console.log("Axios signup error: ", err);
-          setFormData({...formData, loading: false, errorMsg: err.response.data.errorMessage})
+          setFormData({
+            ...formData,
+            loading: false,
+            errorMsg: err.response.data.errorMessage,
+          });
         });
     }
   };
