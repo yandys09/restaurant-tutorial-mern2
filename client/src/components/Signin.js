@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { setAuthentication } from "../helpers/auth";
 import isEmail from "validator/lib/isEmail";
 import isEmpty from "validator/lib/isEmpty";
 import { signin } from "../api/auth";
@@ -15,7 +16,7 @@ const Signin = () => {
     redirectToDashboard: false,
   });
 
-  const { email, password, errorMsg, loading, redirectToDashboard } = formData;
+  const { email, password, errorMsg, loading } = formData;
 
   /**
    *    EVENT HANDLES
@@ -33,12 +34,7 @@ const Signin = () => {
     evt.preventDefault();
 
     //client-side validation
-    if (
-     
-      isEmpty(email) ||
-      isEmpty(password)
-      
-    ) {
+    if (isEmpty(email) || isEmpty(password)) {
       setFormData({
         ...formData,
         errorMsg: "All fields are required",
@@ -55,7 +51,12 @@ const Signin = () => {
       setFormData({ ...formData, loading: true });
 
       signin(data)
-       
+        .then((response) => {
+          setAuthentication(response.data.token, response.data.user);
+        })
+        .catch((err) => {
+          console.log("Signin api function error : , err");
+        });
     }
   };
 
