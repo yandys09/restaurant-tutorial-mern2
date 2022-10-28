@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { setAuthentication } from "../helpers/auth";
+import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { setAuthentication, isAuthenticated } from "../helpers/auth";
 import isEmail from "validator/lib/isEmail";
 import isEmpty from "validator/lib/isEmpty";
 import { signin } from "../api/auth";
@@ -8,12 +8,21 @@ import { showLoading } from "../helpers/loading";
 import { showErrorMsg } from "../helpers/message";
 
 const Signin = () => {
+  let history = useHistory();
+
+  useEffect(() => {
+    if (isAuthenticated() && isAuthenticated().role === 1) {
+      history.push("/admin/dashboard");
+    } else if (isAuthenticated() && isAuthenticated().role === 0) {
+      history.push("/user/dashboard");
+    }
+  }, [history]);
+
   const [formData, setFormData] = useState({
     email: "yandys03@naver.com",
     password: "123456",
     errorMsg: false,
     loading: false,
-    redirectToDashboard: false,
   });
 
   const { email, password, errorMsg, loading } = formData;
@@ -37,12 +46,12 @@ const Signin = () => {
     if (isEmpty(email) || isEmpty(password)) {
       setFormData({
         ...formData,
-        errorMsg: "All fields are required",
+        errorMsg: "모든 항목을 채워야합니다",
       });
     } else if (!isEmail(email)) {
       setFormData({
         ...formData,
-        errorMsg: "Invalid email",
+        errorMsg: "잘못된 이메일",
       });
     } else {
       const { email, password } = formData;
@@ -53,9 +62,16 @@ const Signin = () => {
       signin(data)
         .then((response) => {
           setAuthentication(response.data.token, response.data.user);
+          if (isAuthenticated() && isAuthenticated().role === 1) {
+            console.log("Redirect to admin dashboard");
+            history.push("/admin/dashboard");
+          } else {
+            console.log("Redirect to user dashboard");
+            history.push("/user/dashboard");
+          }
         })
         .catch((err) => {
-          console.log("Signin api function error : , err");
+          console.log("로그인 API 기능 오류 : ", err);
         });
     }
   };
