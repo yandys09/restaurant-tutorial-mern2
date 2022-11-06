@@ -37,14 +37,14 @@ exports.signinController = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({
-        errorMessage: "Invalid credentials!",
+        errorMessage: "잘못된 자격 증명입니다.!",
       });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({
-        errorMessage: "Invalid credentials",
+        errorMessage: "잘못된 자격 증명입니다.!",
       });
     }
 
@@ -69,9 +69,9 @@ exports.signinController = async (req, res) => {
       }
     );
   } catch (err) {
-    console.log("Inside signinController error :", err);
+    console.log("내부 signinController 오류 :", err);
     res.status(500).json({
-      errorMessage: "Server error",
+      errorMessage: "서버 에러입니다.",
     });
   }
 };

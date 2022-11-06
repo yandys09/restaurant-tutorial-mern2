@@ -72,6 +72,11 @@ const Signin = () => {
         })
         .catch((err) => {
           console.log("로그인 API 기능 오류 : ", err);
+          setFormData({
+            ...formData,
+            loading: false,
+            errorMsg: err.response.data.errorMessage
+          })
         });
     }
   };

@@ -1,9 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { isAuthenticated } from "../helpers/auth";
+import { isAuthenticated, logout } from "../helpers/auth";
 
-const Header = () => {
+const Header = ({ history }) => {
+  const handleLogout = (evt) => {
+    logout(() => {
+      history.push("/signin");
+    });
+  };
   // views
   const showNavigation = () => (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -24,21 +29,21 @@ const Header = () => {
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-          {isAuthenticated && (
+          {!isAuthenticated() && (
             <Fragment>
               <li className="nav-item ">
                 <Link to="/" className="nav-link">
-                  Home
+                  <i class="fa-solid fa-house-user"></i> Home
                 </Link>
               </li>
               <li className="nav-item ">
                 <Link to="/signup" className="nav-link">
-                  Signup
+                  <i class="fa-solid fa-pen-to-square"></i> Signup
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/signin" className="nav-link">
-                  Signin
+                  <i class="fa-sharp fa-solid fa-right-to-bracket"></i> Signin
                 </Link>
               </li>
             </Fragment>
@@ -48,7 +53,7 @@ const Header = () => {
             <Fragment>
               <li className="nav-item ">
                 <Link to="/user/dashboard" className="nav-link">
-                  Dashboard
+                  <i class="fa-solid fa-house-user"></i> Dashboard
                 </Link>
               </li>
             </Fragment>
@@ -58,7 +63,7 @@ const Header = () => {
             <Fragment>
               <li className="nav-item ">
                 <Link to="/admin/dashboard" className="nav-link">
-                  Admin Dashboard
+                  <i class="fa-sharp fa-solid fa-house-user"></i> Dashboard
                 </Link>
               </li>
             </Fragment>
@@ -67,9 +72,12 @@ const Header = () => {
           {isAuthenticated() && (
             <Fragment>
               <li className="nav-item ">
-                <Link to="/admin/dashboard" className="nav-link">
-                 Logout
-                </Link>
+                <button
+                  className="btn btn-link text-secondary text-decoration-none pl-0"
+                  onClick={handleLogout}
+                >
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                </button>
               </li>
             </Fragment>
           )}

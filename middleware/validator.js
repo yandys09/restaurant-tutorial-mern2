@@ -2,17 +2,23 @@ const { check, validationResult } = require("express-validator");
 
 exports.signupValidator = [
   check("username").not().isEmpty().trim().withMessage("All fields required!"),
-  check("email").isEmail().normalizeEmail().withMessage("Invalid email"),
+  check("email")
+    .isEmail()
+    .normalizeEmail()
+    .withMessage("잘못된 이메일 입니다.!"),
   check("password")
     .isLength({ min: 6 })
-    .withMessage("Password must be at less 6 characters long"),
+    .withMessage("비밀번호는 6자 이내여야 합니다."),
 ];
 
 exports.signinValidator = [
-  check("email").isEmail().normalizeEmail().withMessage("Invalid email"),
+  check("email")
+    .isEmail()
+    .normalizeEmail()
+    .withMessage("잘못된 이메일 입니다."),
   check("password")
     .isLength({ min: 6 })
-    .withMessage("Password must be at less 6 characters long"),
+    .withMessage("비밀번호는 6자 이내여야 합니다."),
 ];
 
 exports.validatorResult = (req, res, next) => {
