@@ -27,23 +27,23 @@ const Header = ({ history }) => {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
           {!isAuthenticated() && (
             <Fragment>
               <li className="nav-item ">
                 <Link to="/" className="nav-link">
-                  <i class="fa-solid fa-house-user"></i> Home
+                  <i className="fa-solid fa-house-user"></i> Home
                 </Link>
               </li>
               <li className="nav-item ">
                 <Link to="/signup" className="nav-link">
-                  <i class="fa-solid fa-pen-to-square"></i> Signup
+                  <i classNmae="fa-solid fa-pen-to-square"></i> Signup
                 </Link>
               </li>
               <li className="nav-item">
                 <Link to="/signin" className="nav-link">
-                  <i class="fa-sharp fa-solid fa-right-to-bracket"></i> Signin
+                  <i className="fa-sharp fa-solid fa-right-to-bracket"></i> Signin
                 </Link>
               </li>
             </Fragment>
@@ -53,7 +53,7 @@ const Header = ({ history }) => {
             <Fragment>
               <li className="nav-item ">
                 <Link to="/user/dashboard" className="nav-link">
-                  <i class="fa-solid fa-house-user"></i> Dashboard
+                  <i className="fa-solid fa-house-user"></i> Dashboard
                 </Link>
               </li>
             </Fragment>
@@ -63,7 +63,7 @@ const Header = ({ history }) => {
             <Fragment>
               <li className="nav-item ">
                 <Link to="/admin/dashboard" className="nav-link">
-                  <i class="fa-sharp fa-solid fa-house-user"></i> Dashboard
+                  <i className="fa-sharp fa-solid fa-house-user"></i> Dashboard
                 </Link>
               </li>
             </Fragment>
@@ -76,7 +76,7 @@ const Header = ({ history }) => {
                   className="btn btn-link text-secondary text-decoration-none pl-0"
                   onClick={handleLogout}
                 >
-                  <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                  <i className="fa-solid fa-arrow-right-from-bracket"></i> Logout
                 </button>
               </li>
             </Fragment>

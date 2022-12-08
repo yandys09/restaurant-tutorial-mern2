@@ -2,21 +2,25 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 const connectDB = require("./database/db");
 require("colors");
-const authRoutes = require("./routes/auth")
+const authRoutes = require("./routes/auth");
+const categoryRoutes = require("./routes/category");
 
 //middleware
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
-app.use("/api/auth", authRoutes)
+app.use(cookieParser());
+app.use("/api/auth", authRoutes);
+app.use("/api/category", categoryRoutes);
 
 connectDB();
 
 app.get("/", (req, res) => {
-  res.send("Inside Server Page")
-})
+  res.send("Inside Server Page");
+});
 
 const port = process.env.PORT || 5000;
 
