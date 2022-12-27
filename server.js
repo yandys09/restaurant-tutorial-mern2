@@ -7,6 +7,8 @@ const connectDB = require("./database/db");
 require("colors");
 const authRoutes = require("./routes/auth");
 const categoryRoutes = require("./routes/category");
+const productRoutes = require("./routes/product");
+
 
 //middleware
 app.use(cors());
@@ -15,6 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/api/auth", authRoutes);
 app.use("/api/category", categoryRoutes);
+app.use("/api/product", productRoutes);
 
 connectDB();
 
